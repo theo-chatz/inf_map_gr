@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TransEcon Map</title>
+
+    <!--leaflet-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <!--data-->
+    <script src="data/roads_motorway.js"></script>
+    <script src="data/roads_primary.js"></script>
+    <script src="data/roads_trunk.js"></script>
+
+</head>
+
+<body>
+    <div id="map" style = "width: 900px; height: 580px"></div>
+
+    <script type="text/javascript">
+        var map = L.map('map',{
+            renderer: L.canvas()
+        }).setView([38.02, 23.74], 7);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.geoJSON(roads_motorway).addTo(map);
+        L.geoJSON(roads_trunk).addTo(map);
+        L.geoJSON(roads_primary).addTo(map);
+
+        //var marker = L.marker([51.5, -0.09]).addTo(map);
+    </script>
+
+</body>
+
+</html>
