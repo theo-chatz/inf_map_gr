@@ -4,15 +4,17 @@ var map = L.map('map', {
 
 
 // basemaps
-var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var osm = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 
 // map layers
-var primary = L.geoJSON(roads_primary, { style: { "color": "green", "weight": 1 } }).addTo(map);
-var trunk = L.geoJSON(roads_trunk, { style: { "color": "orange", "weight": 2 } }).addTo(map);
-var motorway = L.geoJSON(roads_motorway, { style: { "color": "red", "weight": 3 } }).addTo(map);
+var primary = L.geoJSON.ajax("data/roads_primary.geojson", { style: { "color": "green", "weight": 1 } }).addTo(map);
+var trunk = L.geoJSON.ajax("data/roads_trunk.geojson", { style: { "color": "orange", "weight": 2 } }).addTo(map);
+var motorway = L.geoJSON.ajax("data/roads_motorway.geojson", { style: { "color": "red", "weight": 2.5 } }).addTo(map);
+var rail = L.geoJSON.ajax("data/rail_network.geojson", { style: { "color": "black", "weight": 1 } }).addTo(map);
+//var cities = L.geoJSON(, { style: { "color": "red", "weight": 3 } }).addTo(map);
 
 
 // layer control
